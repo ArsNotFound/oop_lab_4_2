@@ -39,3 +39,23 @@ class Model(QObject):
     def c(self, value):
         self._c = value
         self.c_changed.emit(value)
+
+    def emit_signals(self):
+        self.a_changed.emit(self._a)
+        self.b_changed.emit(self._b)
+        self.c_changed.emit(self._c)
+
+    def __str__(self):
+        return f"{self.a}, {self.b}, {self.c}"
+
+    @classmethod
+    def parse(cls, s: str):
+        model = cls()
+        (model._a, model._b, model._c, *_) = map(int, filter(str.isalnum, map(str.strip, s.split(","))))
+        return model
+
+    @classmethod
+    def from_values(cls, a: int, b: int, c: int):
+        model = cls()
+        model._a, model._b, model._c = a, b, c
+        return model

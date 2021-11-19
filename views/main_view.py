@@ -41,9 +41,7 @@ class MainView(QMainWindow):
         self._model.b_changed.connect(self.b_changed)
         self._model.c_changed.connect(self.c_changed)
 
-        self._controller.change_a(10)
-        self._controller.change_b(50)
-        self._controller.change_c(90)
+        self._model.emit_signals()
 
     @Slot(int)
     def a_changed(self, value):

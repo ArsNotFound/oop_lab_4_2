@@ -79,6 +79,7 @@ fabric.properties
 *.iml
 out
 gen
+lab_4.txt
 
 # Task files
 .task
