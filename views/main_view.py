@@ -20,6 +20,7 @@ class MainView(QMainWindow):
         self._ui = Ui_Form()
         self._ui.setupUi(self)
 
+        self._ui.a_spinBox.setKeyboardTracking(False)
         self._ui.a_spinBox.valueChanged.connect(self._controller.change_a)
         self._ui.a_horizontalSlider.valueChanged.connect(self._controller.change_a)
         self._ui.a_lineEdit.setValidator(QIntValidator(0, 100, self))
@@ -27,6 +28,7 @@ class MainView(QMainWindow):
             lambda: self._controller.change_a(int(self._ui.a_lineEdit.text() or "0"))
         )
 
+        self._ui.b_spinBox.setKeyboardTracking(False)
         self._ui.b_spinBox.valueChanged.connect(self._controller.change_b)
         self._ui.b_horizontalSlider.valueChanged.connect(self._controller.change_b)
         self._ui.b_lineEdit.setValidator(QIntValidator(0, 100, self))
@@ -34,6 +36,7 @@ class MainView(QMainWindow):
             lambda: self._controller.change_b(int(self._ui.b_lineEdit.text() or "0"))
         )
 
+        self._ui.c_spinBox.setKeyboardTracking(False)
         self._ui.c_spinBox.valueChanged.connect(self._controller.change_c)
         self._ui.c_horizontalSlider.valueChanged.connect(self._controller.change_c)
         self._ui.c_lineEdit.setValidator(QIntValidator(0, 100, self))
