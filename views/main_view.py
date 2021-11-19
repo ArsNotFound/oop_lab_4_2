@@ -12,7 +12,7 @@ if typing.TYPE_CHECKING:
 
 
 class MainView(QMainWindow):
-    def __init__(self, model: Model, controller: Controller):
+    def __init__(self, model: 'Model', controller: 'Controller'):
         super().__init__()
 
         self._model = model

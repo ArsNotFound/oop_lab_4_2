@@ -7,7 +7,7 @@ if typing.TYPE_CHECKING:
 
 
 class Controller(QObject):
-    def __init__(self, model: Model):
+    def __init__(self, model: 'Model'):
         super().__init__()
 
         self._model = model
