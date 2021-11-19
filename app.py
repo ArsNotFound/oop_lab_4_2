@@ -11,7 +11,7 @@ DATA_FILE = "lab_4.txt"
 
 
 class App(QApplication):
-    def __init__(self, sys_argv):
+    def __init__(self, sys_argv: list[str]):
         super(App, self).__init__(sys_argv)
         self.model = self.get_model()
         self.controller = Controller(self.model)
@@ -25,7 +25,7 @@ class App(QApplication):
             f.write(str(self.model))
 
     @staticmethod
-    def get_model():
+    def get_model() -> Model:
         if os.path.exists(DATA_FILE):
             with open(DATA_FILE, "r") as f:
                 s = f.readline()

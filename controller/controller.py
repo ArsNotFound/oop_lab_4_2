@@ -1,6 +1,9 @@
+import typing
+
 from PySide6.QtCore import QObject, Slot
 
-from model.model import Model
+if typing.TYPE_CHECKING:
+    from model.model import Model
 
 
 class Controller(QObject):
@@ -10,7 +13,7 @@ class Controller(QObject):
         self._model = model
 
     @Slot(int)
-    def change_a(self, value):
+    def change_a(self, value: int):
         if self._model.a == value:
             return
         self._model.a = value
@@ -20,7 +23,7 @@ class Controller(QObject):
             self._model.c = value
 
     @Slot(int)
-    def change_b(self, value):
+    def change_b(self, value: int):
         if self._model.b == value:
             return
         b_prev = self._model.b
@@ -30,7 +33,7 @@ class Controller(QObject):
             self._model.b = b_prev
 
     @Slot(int)
-    def change_c(self, value):
+    def change_c(self, value: int):
         if self._model.c == value:
             return
         self._model.c = value

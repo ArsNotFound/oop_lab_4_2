@@ -1,10 +1,14 @@
+import typing
+
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QIntValidator
 from PySide6.QtWidgets import QMainWindow
 
-from controller.controller import Controller
-from model.model import Model
 from views.main_view_ui import Ui_Form
+
+if typing.TYPE_CHECKING:
+    from controller.controller import Controller
+    from model.model import Model
 
 
 class MainView(QMainWindow):
@@ -44,19 +48,19 @@ class MainView(QMainWindow):
         self._model.emit_signals()
 
     @Slot(int)
-    def a_changed(self, value):
+    def a_changed(self, value: int):
         self._ui.a_spinBox.setValue(value)
         self._ui.a_horizontalSlider.setValue(value)
         self._ui.a_lineEdit.setText(str(value))
 
     @Slot(int)
-    def b_changed(self, value):
+    def b_changed(self, value: int):
         self._ui.b_spinBox.setValue(value)
         self._ui.b_horizontalSlider.setValue(value)
         self._ui.b_lineEdit.setText(str(value))
 
     @Slot(int)
-    def c_changed(self, value):
+    def c_changed(self, value: int):
         self._ui.c_spinBox.setValue(value)
         self._ui.c_horizontalSlider.setValue(value)
         self._ui.c_lineEdit.setText(str(value))
