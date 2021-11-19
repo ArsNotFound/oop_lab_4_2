@@ -1,0 +1,30 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  UI_FILES_LOCATION:
+    resources/
+
+  PY_VIEW_LOCATION:
+    views/
+
+  UI_FILES: main_view
+
+tasks:
+  ui:
+    cmds:
+      - |
+        {{ $pyViewLocation := .PY_VIEW_LOCATION }}
+        {{ $uiFilesLocation := .UI_FILES_LOCATION }}
+        {{ range $i, $line := .UI_FILES | splitLines -}}
+        pyside6-uic{{exeExt}} -o {{ $pyViewLocation }}{{ $line }}_ui.py --from-imports {{ $uiFilesLocation }}{{ $line }}.ui
+        {{ end }}
+
+    sources:
+      - |
+        {{ .UI_FILES_LOCATION }}/*.ui
+
+    generates:
+      - |
+        {{ .PY_VIEW_LOCATION }}/*_ui.py
