@@ -19,8 +19,15 @@ class Model(QObject):
 
     @a.setter
     def a(self, value: int):
+        if self._a == value:
+            return
         self._a = value
-        self.a_changed.emit(value)
+
+        if self._a > self.b:
+            self._b = value
+        if self._a > self.c:
+            self._c = value
+        self.emit_signals()
 
     @property
     def b(self) -> int:
@@ -28,8 +35,15 @@ class Model(QObject):
 
     @b.setter
     def b(self, value: int):
-        self._b = value
-        self.b_changed.emit(value)
+        if self._b == value:
+            return
+        b_prev = self._b
+        if self.a <= value <= self.c:
+            self._b = value
+        else:
+            self._b = b_prev
+
+        self.b_changed.emit(self._b)
 
     @property
     def c(self) -> int:
@@ -37,8 +51,16 @@ class Model(QObject):
 
     @c.setter
     def c(self, value: int):
+        if self._c == value:
+            return
         self._c = value
         self.c_changed.emit(value)
+
+        if self._c < self.b:
+            self._b = value
+        if self._c < self.a:
+            self._a = value
+        self.emit_signals()
 
     def emit_signals(self):
         self.a_changed.emit(self._a)

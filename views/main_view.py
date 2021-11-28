@@ -52,9 +52,9 @@ class MainView(QMainWindow):
 
     @Slot(int)
     def a_changed(self, value: int):
-        self._ui.a_spinBox.setValue(value)
-        self._ui.a_horizontalSlider.setValue(value)
-        self._ui.a_lineEdit.setText(str(value))
+            self._ui.a_spinBox.setValue(value)
+            self._ui.a_horizontalSlider.setValue(value)
+            self._ui.a_lineEdit.setText(str(value))
 
     @Slot(int)
     def b_changed(self, value: int):
