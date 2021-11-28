@@ -43,7 +43,7 @@ class Model(QObject):
         else:
             self._b = b_prev
 
-        self.b_changed.emit(self._b)
+        self.emit_signals()
 
     @property
     def c(self) -> int:
@@ -54,7 +54,6 @@ class Model(QObject):
         if self._c == value:
             return
         self._c = value
-        self.c_changed.emit(value)
 
         if self._c < self.b:
             self._b = value
